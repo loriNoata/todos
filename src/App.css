@@ -1,22 +1,76 @@
-.App {
-  text-align: center;
+.container{
+  min-height: 400px; 
+  height:400px; 
+  max-height:auto; 
+  max-width: 400px;
+  display: flex; 
+  flex-direction: column; 
+  border: 2px solid black; 
+  float: left; 
 }
 
-.App-logo {
-  height: 40vmin;
+.headerContainer, 
+.footerContainer{
+  margin: 5px 0;
+  padding:20px;  
+  min-height: 30px; 
+  max-width: 400px;
+  text-align: center; 
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  header.headerContainer, 
+  .footerContainer{
+    background-color: #f4f4f4; 
+    border: 1px dotted #f4f4f4;
+  }  
+
+  article.headerContainer{
+    min-height: 20px; 
+    border: 1px dotted lightgrey;
+    flex: 1 0 auto; 
+  } 
+
+  article.headerContainer button{
+    float: right; 
+  }
+
+  article.headerContainer span{
+    float: left; 
+  }
+.isActive {
+  color: red;
+  font-weight: 800; 
 }
 
-.App-link {
-  color: #09d3ac;
+.isComplete span {
+  color: green;
+  text-decoration: line-through;
+}
+
+
+ 
+
+.footerContainer.All > .All {
+   background-color:white; 
+}
+
+.footerContainer.Completed > .Completed{
+  background-color:white; 
+}
+.footerContainer.Active > .Active {
+  background-color:white; 
+}
+
+.article-container {
+  margin: 0 30px; 
+  float: left; 
+}
+
+.number {
+  padding:3px 7px; 
+}
+
+.selected.number{
+  font-weight: bold;
+  color: black;
 }
