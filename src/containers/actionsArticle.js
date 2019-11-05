@@ -12,6 +12,7 @@ export const fetchPostsRequest = () => {
         type: 'FETCH_POSTS_REQUEST' 
     }  
 }
+
 export const fetchPostsFailure = () => {  
     return { 
         type: 'FETCH_POSTS_FAILURE', 

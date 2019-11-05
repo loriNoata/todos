@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'; 
 import {handleSubmitLogin, handleSubmitLogout} from '../../containers/actionsLoggin' 
- 
+import LoggInArticle from './loginArticle'; 
 
 class LoggIn extends Component {
 	constructor(props) {
         super(props); 
         this.state = {
-            inputName:"", 
-            inputPassword: ""
+            inputName: '', 
+            inputPassword: ''
         } 
-       
     }
    
     onHandleInputName = (e) => {
@@ -24,22 +23,22 @@ class LoggIn extends Component {
             inputPassword : e.target.value
          })
     }
-   
+
 
     render() {
         const {loggedIn} = this.props;
-        console.log(loggedIn);
         const {inputName,inputPassword } = this.state; 
         return(
-            <div>
-                {loggedIn && (
+            <div className="login-area">
+                {loggedIn  && (
                     <div> 
                         <h1> Welcome {inputName} </h1> 
+                        <LoggInArticle />
                         <input type="submit" value="Logout" onClick={this.props.onHandleSubmitLogout}/>
                     </div>
                 )}  
 
-                 {!loggedIn && (
+                {!loggedIn && (
                     <div> 
                         <h1> User is LoggOut</h1> 
                         <input type="text" onChange={this.onHandleInputName}/>
@@ -47,8 +46,6 @@ class LoggIn extends Component {
                         <input type="submit" value="Login" onClick={() => this.props.onHandleSubmitLogin(inputName, inputPassword)}/>
                     </div>
                 )}  
-
-                
             </div>
         )
 

@@ -10,10 +10,6 @@ class ArticleElements extends Component {
         } 
     }
 
-   componentDidMount() {
-
-   }
-   
     displayToDoes() {
         const {newsList} = this.props; 
         if (newsList.length>0)  {
@@ -39,25 +35,17 @@ class ArticleElements extends Component {
     render() {
         const {newsList} = this.props; 
         const elemDisplay = (newsList.length > 0) ? this.displayToDoes() : this.loading()
-          return( elemDisplay )
+          return elemDisplay
     }
 }
 
 
 function mapStateToProps(state) {
-   
       return {
         newsList : state.ArticleReducer.newsList, 
         total_pages: state.ArticleReducer
     }
 }
 
-// const mapDispatchToProps = dispatch => {
-//     return {
-//         // onHandleDelete: (toDo) => dispatch(removeTodo(toDo)), 
-//         // onToggleActive: (toDo, isChecked) => dispatch(toggleActive(toDo, isChecked))
-         
-//     }
-// }
 
 export default connect(mapStateToProps)(ArticleElements)

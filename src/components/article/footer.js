@@ -10,8 +10,6 @@ class ArticleFooter extends Component {
    
     render() {
         const {list, pages, page} = this.props; 
-        console.log('page::',page);
-       
         return(
 			<footer className="footerContainer"  >
                 {list && list.length>0 && (
@@ -49,4 +47,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
- export default connect(mapStateToProps, mapDispatchToProps)(ArticleFooter)
+export default connect(mapStateToProps, mapDispatchToProps)(ArticleFooter)

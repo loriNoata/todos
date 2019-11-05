@@ -13,10 +13,9 @@ export default class LoggInCom extends Component {
 
     render() {
         return(
-            <div className="article-container">
+            <div className="loggin-container">
                 <LoggIn />    
-                 
-             </div>  
+            </div>  
         )
     }
    

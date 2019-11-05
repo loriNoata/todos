@@ -9,7 +9,6 @@ export const addTodo = (toDo, id) => {
 }
 
 export const removeTodo = (toDo) => {
-    //console.log('remove TO Do actions: ', toDo)
     return {
        type: REMOVE_TODO, 
        toDo

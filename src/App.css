@@ -48,8 +48,6 @@
 }
 
 
- 
-
 .footerContainer.All > .All {
    background-color:white; 
 }
@@ -66,6 +64,11 @@
   float: left; 
 }
 
+.loggin-container {
+  float: left; 
+  width: 60%; 
+}
+
 .number {
   padding:3px 7px; 
 }
@@ -73,4 +76,10 @@
 .selected.number{
   font-weight: bold;
   color: black;
+}
+
+
+.login-area{
+  border: 2px dotted lightgrey; 
+  background-color: lightsteelblue;
 }
