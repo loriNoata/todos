@@ -9,15 +9,9 @@ import {createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import thunk  from 'redux-thunk'; 
 import { Provider } from 'react-redux'; 
 
-import { reduxFirestore, getFirestore } from 'redux-firestore'; 
-import { reactReduxFirebase, getFirebase } from 'react-redux-firebase'; 
-import firebaseConfig from './firebaseConfig'; 
-
 import AddTodoReducer from './containers/reducers/addTodoReducer'; 
 import ArticleReducer from './containers/reducers/articleReducer'; 
 import LogginReducer from './containers/reducers/loggInReducer'; 
-
-
 
 const rootReducers = combineReducers({
     AddTodoReducer: AddTodoReducer,
@@ -30,9 +24,7 @@ const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
         rootReducers, 
         composeEnhancer(
-            applyMiddleware(thunk.withExtraArgument({ getFirebase,getFirestore })), 
-            // reduxFirestore(firebaseConfig), 
-            // reactReduxFirebase(firebaseConfig)       
+            applyMiddleware(thunk)     
         )
     );
 

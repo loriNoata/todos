@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'; 
-import { fetchAndloadArticlePerClick, fetchAndloadAllArticles} from '../../containers/thunks' 
-import {deleteAllArticles, openVirtualWallet, addSumValue} from './../../containers/actionsLoggin';  
+import { fetchAndloadArticlePerClick, fetchAndloadAllArticles, fetchAndGetCompanies, fetchAndGetUsersFromCompany, setSumValueToServer} from '../../containers/thunks' 
+import {deleteAllArticles, openVirtualWallet, addSumValue, addNewCompany, } from './../../containers/actionsLoggin';  
  
 
 class LoggInArticle extends Component {
@@ -30,8 +30,23 @@ class LoggInArticle extends Component {
         e.preventDefault();
         this.setState({
             sumValue: e.target.value
-        })
+        }); 
+
     }
+
+    displayUsersFromCompany = (arry, Id) => {
+        const elem = arry.map(elm => {
+             if (elm.companyId === parseInt(Id)) {
+                return (<div key={elm.id}> {elm.teacher} </div>)
+            }
+            return null
+        })
+        return elem
+    }
+
+    // getNewCompany = () => {
+    //     const 
+    // }
 
     render() {
      
@@ -40,7 +55,7 @@ class LoggInArticle extends Component {
                 <button onClick={this.props.onOpenVirtualWallet}> Load your virtual wallet</button>
                 <button onClick={() => this.props.onLoadArticlePerClick(this.props.articleNo)}> load new article </button>  
                 <button onClick={this.props.onLoadAllArticles}> load all article </button> 
-                Wallet value: {this.props.value}
+                 Wallet value: {this.props.value}
 
                 {/* better way of doing it?  */}
                 {this.displayArticle(this.props.articleData)}
@@ -58,13 +73,29 @@ class LoggInArticle extends Component {
                         add the sum you want : 
                         <input type="number" value={this.state.sumValue} onChange={this.onHandleAddSumValue}/> 
                         <button onClick= {() =>this.props.onAddSumValue(this.state.sumValue)}> Add the sum  </button> 
-
-
                     </div>
                 )
-
-
                 }
+
+                <div> Companies: <button onClick={this.props.onGetCompanies}> get all companies </button> 
+                {this.props.errorMsg && (
+                    <div> {this.props.errorMsg}</div>
+                )}
+
+                {this.props.companies.map( elem =>  (
+                    <ul key={elem.id}>
+                        <li>
+                            <h1>{elem.name}</h1> 
+                            <span> {elem.descrition} </span>
+                            <button onClick={() => this.props.onGetUsersFromCompany(elem.id)}>  get the users from {elem.name}</button>
+                            {this.displayUsersFromCompany(this.props.usersFromCompany, elem.id)}
+                        </li> 
+                    </ul>
+                )
+                )}
+
+                <button onClick={this.getNewCompany}> Add a new company</button>
+                </div>
 
             </div>
         )
@@ -80,7 +111,11 @@ function mapStateToProps(state) {
         articleData: state.LogginReducer.articleData, 
         articlesData: state.LogginReducer.articlesData, 
         isOpen: state.LogginReducer.isOpen, 
-        value: state.LogginReducer.value
+        value: state.LogginReducer.value, 
+        companies: state.LogginReducer.companies, 
+        usersFromCompany: state.LogginReducer.usersFromCompany, 
+        errorMsg: state.ArticleReducer.error, 
+        companyId : state.LogginReducer.companyId
     }
 }
 
@@ -90,7 +125,10 @@ const mapDispatchToProps = dispatch => {
         onLoadAllArticles: () => dispatch(fetchAndloadAllArticles()), 
         onDeleteAll: () =>dispatch(deleteAllArticles()), 
         onOpenVirtualWallet: () => dispatch(openVirtualWallet()), 
-        onAddSumValue: (sum) => dispatch(addSumValue(sum))
+        onAddSumValue: (sum) => dispatch(setSumValueToServer(sum)),  //addSumValue(sum)
+        onGetCompanies : () => dispatch(fetchAndGetCompanies()), 
+        onGetUsersFromCompany: (id) => dispatch(fetchAndGetUsersFromCompany(id)), 
+        onAddNewCompany : () => dispatch(addNewCompany())
       
     }
 }

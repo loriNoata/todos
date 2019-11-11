@@ -1,7 +1,7 @@
-import {fetchUsersPerPage, fetchArticlesPerClick, fetchAllArticles}  from './api'; 
+import {fetchUsersPerPage, fetchArticlesPerClick, fetchAllArticles,fetchAllCompanies, fetchUsersFromCompany, setSumToServer}  from './api'; 
 
 import {loadNews, fetchPostsRequest, fetchPostsFailure, fetchPostsRequestSuccess} from './actionsArticle'; 
-import {loadArticlePerClick, loadAllArticles} from './actionsLoggin'
+import {loadArticlePerClick, loadAllArticles, loadAllCompanies, loadUsersFromCompany, addSumValue} from './actionsLoggin'
 
 export const fetchAndLoadNews = (pageNumber=1) => {
     return function(dispatch) {
@@ -36,3 +36,45 @@ export const fetchAndloadAllArticles = () => {
         })
     }
 }
+
+
+export const fetchAndGetCompanies = () => {
+    return function(dispatch) {
+        fetchAllCompanies().then( data => {
+ 
+            dispatch(fetchPostsRequestSuccess())
+            dispatch(loadAllCompanies(data))
+        }).catch(function() {
+            dispatch(fetchPostsFailure()); 
+        })
+    }
+}
+
+export const fetchAndGetUsersFromCompany = (id) => {
+    return function(dispatch) {
+        fetchUsersFromCompany(id).then(data =>{
+            dispatch(fetchPostsRequestSuccess())
+            dispatch(loadUsersFromCompany(data, id))
+        }).catch(function() {
+            dispatch(fetchPostsFailure()); 
+        })
+       
+    }
+}
+
+export const setSumValueToServer = (sum) => {
+    return (dispatch, getState) => {
+        const state = getState();
+    
+        setSumToServer(sum).then( data => {
+            console.log("state in thunks", state);
+            console.log("sum in thunks", sum);
+            console.log("data in thunks", data);
+            dispatch(addSumValue(data, sum))
+        
+    })
+}
+}
+
+
+ 

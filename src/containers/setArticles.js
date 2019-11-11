@@ -4,13 +4,10 @@ import {connect} from 'react-redux';
 import ArticleHeader from '../components/article/header';
 import ArticleElements from '../components/article/footer';
 import ArticleFooter from '../components/article/articleElements';
-
-
   
 class SetArticles extends Component {
 	constructor(props) {
         super(props);
-     
     }
 
     render() {
@@ -22,7 +19,6 @@ class SetArticles extends Component {
             </div>  
         )
     }
-   
 }
 
 

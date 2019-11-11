@@ -1,6 +1,4 @@
- 
- export const filterSelector = (state) => {
-
+export const filterSelector = (state) => {
      if (state.toDoList  && state.toDoList.length>0) {
         const activeList  = state.toDoList.filter( elem =>  {
                 if (elem.isActive) {
@@ -18,7 +16,6 @@
                 } 
             })
 
-            
             switch (state.filterBy) {
                 case 'Active':  return activeList
                 case 'Completed': return completedList
