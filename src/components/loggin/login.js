@@ -40,7 +40,7 @@ class LoggIn extends Component {
 
                 {!loggedIn && (
                     <div> 
-                        <h1> User is LoggOut</h1> 
+                        <h1> User is Logout</h1> 
                         <input type="text" onChange={this.onHandleInputName}/>
                         <input type="text"  onChange={this.onHandleInputPassword}/>
                         <input type="submit" value="Login" onClick={() => this.props.onHandleSubmitLogin(inputName, inputPassword)}/>

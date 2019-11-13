@@ -6,7 +6,9 @@ const initialState = {
     articles: [], 
     allArticles: [], 
     isOpen: false,
-    value : 0
+    value : 0, 
+    companies: [], 
+    usersFromCompany:[]
 
 }
 
@@ -56,10 +58,34 @@ const LogginReducer = (state = initialState, action) => {
 
         
         case "ADD_SUM_VALUE" : 
-        console.log('add sum value', action.sum); 
+        console.log('ADD_SUM_VALUE  action ...', action); 
+        console.log(' ADD_SUM_VALUE state...', state); 
+
             return {
                 ...state, 
                 value : parseInt(state.value) + parseInt(action.sum)
+            }
+
+        case "LOAD_ALL_COMPANIES" : 
+            return {
+                ...state, 
+                companies: [...state.companies, ...action.companies]
+                
+            }
+
+        case "LOAD_USERS_FROM_COMPANY" : 
+            console.log("!!!! action::", action );
+            const usersFromComp = action.usersFromCompany.map(elem => console.log(elem.id))
+            return {
+                ...state, 
+                //companyId: 
+                usersFromCompany: [ ...action.usersFromCompany]
+            }
+
+        case "ADD_NEW_COMPANY" : 
+            return {
+                ...state, 
+                companies: [...state.companies, ...action.companies]
             }
 
         default:  return state

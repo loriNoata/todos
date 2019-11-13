@@ -16,7 +16,7 @@ export const fetchPostsRequest = () => {
 export const fetchPostsFailure = () => {  
     return { 
         type: 'FETCH_POSTS_FAILURE', 
-        error: 'Oops' 
+        error: 'Oops, something went wrong' 
     } 
 }  
 

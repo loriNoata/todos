@@ -43,9 +43,37 @@ export const openVirtualWallet = () => {
     }
 }
 
-export const addSumValue = (sum) => {
+export const addSumValue = (data, sum) => {
     return {
         type: ADD_SUM_VALUE, 
+        data, 
         sum
+    }
+}
+
+
+
+export const loadAllCompanies = (companies) => {
+   
+    return {
+        type: 'LOAD_ALL_COMPANIES', 
+        companies
+
+    }
+}
+
+export const loadUsersFromCompany = (usersFromCompany, companyId) => {
+    return {
+        type: 'LOAD_USERS_FROM_COMPANY', 
+        usersFromCompany, 
+        companyId
+    }
+}
+
+export const addNewCompany = (company, description) => {
+    return {
+        type: 'ADD_NEW_COMPANY', 
+        company, 
+        description
     }
 }
