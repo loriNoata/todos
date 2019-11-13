@@ -6,7 +6,7 @@ const initialState = {
     articles: [], 
     allArticles: [], 
     isOpen: false,
-    value : 0, 
+    totalSum : 0, 
     companies: [], 
     usersFromCompany:[]
 
@@ -63,7 +63,7 @@ const LogginReducer = (state = initialState, action) => {
 
             return {
                 ...state, 
-                value : parseInt(state.value) + parseInt(action.sum)
+                totalSum : parseInt(state.totalSum) + parseInt(action.sum)
             }
 
         case "LOAD_ALL_COMPANIES" : 

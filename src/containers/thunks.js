@@ -61,15 +61,12 @@ export const fetchAndGetUsersFromCompany = (id) => {
        
     }
 }
-
-export const setSumValueToServer = (sum) => {
+ 
+export const setSumValueToServer = (sum, total) => {
     return (dispatch, getState) => {
         const state = getState();
-    
-        setSumToServer(sum).then( data => {
-            console.log("state in thunks", state);
-            console.log("sum in thunks", sum);
-            console.log("data in thunks", data);
+        console.log("total sum: ", state.LogginReducer.totalSum )
+        setSumToServer(sum, total).then( data => {
             dispatch(addSumValue(data, sum))
         
     })

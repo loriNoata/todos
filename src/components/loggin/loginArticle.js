@@ -55,7 +55,7 @@ class LoggInArticle extends Component {
                 <button onClick={this.props.onOpenVirtualWallet}> Load your virtual wallet</button>
                 <button onClick={() => this.props.onLoadArticlePerClick(this.props.articleNo)}> load new article </button>  
                 <button onClick={this.props.onLoadAllArticles}> load all article </button> 
-                 Wallet value: {this.props.value}
+                 Wallet value: {this.props.totalSum}
 
                 {/* better way of doing it?  */}
                 {this.displayArticle(this.props.articleData)}
@@ -72,7 +72,7 @@ class LoggInArticle extends Component {
                         Your initial sum is 
                         add the sum you want : 
                         <input type="number" value={this.state.sumValue} onChange={this.onHandleAddSumValue}/> 
-                        <button onClick= {() =>this.props.onAddSumValue(this.state.sumValue)}> Add the sum  </button> 
+                        <button onClick= {() =>this.props.onAddSumValue(this.state.sumValue, this.props.totalSum)}> Add the sum  </button> 
                     </div>
                 )
                 }
@@ -111,7 +111,7 @@ function mapStateToProps(state) {
         articleData: state.LogginReducer.articleData, 
         articlesData: state.LogginReducer.articlesData, 
         isOpen: state.LogginReducer.isOpen, 
-        value: state.LogginReducer.value, 
+        totalSum: state.LogginReducer.totalSum, 
         companies: state.LogginReducer.companies, 
         usersFromCompany: state.LogginReducer.usersFromCompany, 
         errorMsg: state.ArticleReducer.error, 
@@ -125,7 +125,7 @@ const mapDispatchToProps = dispatch => {
         onLoadAllArticles: () => dispatch(fetchAndloadAllArticles()), 
         onDeleteAll: () =>dispatch(deleteAllArticles()), 
         onOpenVirtualWallet: () => dispatch(openVirtualWallet()), 
-        onAddSumValue: (sum) => dispatch(setSumValueToServer(sum)),  //addSumValue(sum)
+        onAddSumValue: (sum, total) => dispatch(setSumValueToServer(sum, total)),  //addSumValue(sum)
         onGetCompanies : () => dispatch(fetchAndGetCompanies()), 
         onGetUsersFromCompany: (id) => dispatch(fetchAndGetUsersFromCompany(id)), 
         onAddNewCompany : () => dispatch(addNewCompany())

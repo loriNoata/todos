@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export const fetchUsersPerPage = (pageNumber=1) => {
     const url = `https://reqres.in/api/users?page=${pageNumber}` 
     return fetch(url).then(data => data.json())
@@ -23,22 +25,12 @@ export const fetchUsersFromCompany = (id) => {
     return fetch(url).then(data => data.json())
 }
 
-export const setSumToServer = (sum) => {
-    console.log("api sum::: ", sum);
-    const url = `http://localhost:3000/sum/`; 
+export const setSumToServer = (value, totalSum) => {
+    const url = `http://localhost:3000/sum`; 
 
-    // server.use(jsonServer.bodyParser)
-    // server.use((req, res, next) => {
-    // if (req.method === 'POST') {
-    //     req.body.sum = sum
-    // }
-
-    //https://github.com/typicode/json-server
-    
-    return fetch(url, {
-        method: 'post',
-        body: JSON.stringify(), 
-        sum, 
-        id: "333"
-}).then(data =>  data.json());  
+    return axios.post(url, {
+       value, 
+       totalSum
+      })
+   
 }
