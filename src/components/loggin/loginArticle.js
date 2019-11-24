@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'; 
-import { fetchAndloadArticlePerClick, fetchAndloadAllArticles, fetchAndGetCompanies, fetchAndGetUsersFromCompany, setSumValueToServer} from '../../containers/thunks' 
+import { fetchAndloadArticlePerClick, fetchAndloadAllArticles, fetchAndGetCompanies, fetchAndGetUsersFromCompany, setSumValueToServer, getTotalSumFromServer} from '../../containers/thunks' 
 import {deleteAllArticles, openVirtualWallet, addSumValue, addNewCompany, } from './../../containers/actionsLoggin';  
  
 
@@ -10,6 +10,11 @@ class LoggInArticle extends Component {
         this.state = {
             sumValue: ''
         }
+    }
+
+    componentDidMount = () => {
+        const { onGetTotalSumFromServer } = this.props; 
+        onGetTotalSumFromServer()
     }
 
     displayArticle = (data) =>{
@@ -52,7 +57,8 @@ class LoggInArticle extends Component {
      
         return(
             <div>
-                <button onClick={this.props.onOpenVirtualWallet}> Load your virtual wallet</button>
+
+                 <button onClick={this.props.onOpenVirtualWallet}> Load your virtual wallet</button>
                 <button onClick={() => this.props.onLoadArticlePerClick(this.props.articleNo)}> load new article </button>  
                 <button onClick={this.props.onLoadAllArticles}> load all article </button> 
                  Wallet value: {this.props.totalSum}
@@ -128,7 +134,8 @@ const mapDispatchToProps = dispatch => {
         onAddSumValue: (sum, total) => dispatch(setSumValueToServer(sum, total)),  //addSumValue(sum)
         onGetCompanies : () => dispatch(fetchAndGetCompanies()), 
         onGetUsersFromCompany: (id) => dispatch(fetchAndGetUsersFromCompany(id)), 
-        onAddNewCompany : () => dispatch(addNewCompany())
+        onAddNewCompany : () => dispatch(addNewCompany()), 
+        onGetTotalSumFromServer : () => dispatch(getTotalSumFromServer())
       
     }
 }

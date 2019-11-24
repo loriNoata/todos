@@ -34,3 +34,8 @@ export const setSumToServer = (value, totalSum) => {
       })
    
 }
+
+export const getTotalSum = () => {
+    const url = `http://localhost:3000/sum`; 
+    return fetch(url).then(data => data.json())
+}

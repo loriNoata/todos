@@ -1,7 +1,7 @@
-import {fetchUsersPerPage, fetchArticlesPerClick, fetchAllArticles,fetchAllCompanies, fetchUsersFromCompany, setSumToServer}  from './api'; 
+import {fetchUsersPerPage, fetchArticlesPerClick, fetchAllArticles,fetchAllCompanies, fetchUsersFromCompany, setSumToServer, getTotalSum}  from './api'; 
 
 import {loadNews, fetchPostsRequest, fetchPostsFailure, fetchPostsRequestSuccess} from './actionsArticle'; 
-import {loadArticlePerClick, loadAllArticles, loadAllCompanies, loadUsersFromCompany, addSumValue} from './actionsLoggin'
+import {loadArticlePerClick, loadAllArticles, loadAllCompanies, loadUsersFromCompany, addSumValue, loadTotalSum} from './actionsLoggin'
 
 export const fetchAndLoadNews = (pageNumber=1) => {
     return function(dispatch) {
@@ -72,6 +72,18 @@ export const setSumValueToServer = (sum, total) => {
     })
 }
 }
+
+export const getTotalSumFromServer = () => {
+    return (dispatch) => {
+
+        getTotalSum().then( data => {
+            console.log("***** ", data); 
+            dispatch(loadTotalSum(data))
+        
+    })
+}
+}
+
 
 
  

@@ -51,6 +51,14 @@ export const addSumValue = (data, sum) => {
     }
 }
 
+export const loadTotalSum = (data) => {
+    console.log("+_++___", data)
+    return {
+        type: "LOAD_TOTAL_SUM", 
+        data
+    }
+}
+
 
 
 export const loadAllCompanies = (companies) => {

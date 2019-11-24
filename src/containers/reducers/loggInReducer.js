@@ -58,13 +58,21 @@ const LogginReducer = (state = initialState, action) => {
 
         
         case "ADD_SUM_VALUE" : 
-        console.log('ADD_SUM_VALUE  action ...', action); 
-        console.log(' ADD_SUM_VALUE state...', state); 
-
             return {
                 ...state, 
                 totalSum : parseInt(state.totalSum) + parseInt(action.sum)
             }
+
+        case "LOAD_TOTAL_SUM" :
+            const objLength = action.data.length; 
+            const lastObj = action.data[objLength-1];
+            const totalSumFromSrv = parseInt(lastObj.value) + parseInt(lastObj.totalSum)
+            console.log("Reducer loadTotalSum ... !!!", lastObj);
+                return {
+                    ...state, 
+                    totalSum : totalSumFromSrv
+                    }
+
 
         case "LOAD_ALL_COMPANIES" : 
             return {
@@ -87,6 +95,8 @@ const LogginReducer = (state = initialState, action) => {
                 ...state, 
                 companies: [...state.companies, ...action.companies]
             }
+
+ 
 
         default:  return state
     }
