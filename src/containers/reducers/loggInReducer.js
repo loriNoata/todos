@@ -8,7 +8,8 @@ const initialState = {
     isOpen: false,
     totalSum : 0, 
     companies: [], 
-    usersFromCompany:[]
+    usersFromCompany:[], 
+    basket: []
 
 }
 
@@ -65,12 +66,13 @@ const LogginReducer = (state = initialState, action) => {
 
         case "LOAD_TOTAL_SUM" :
             const objLength = action.data.length; 
-            const lastObj = action.data[objLength-1];
-            const totalSumFromSrv = parseInt(lastObj.value) + parseInt(lastObj.totalSum)
-            console.log("Reducer loadTotalSum ... !!!", lastObj);
+            console.log("action.data.length>>>", action);
+            //const lastObj = action.data[objLength-1];
+           // const totalSumFromSrv = parseInt(lastObj.value) + parseInt(lastObj.totalSum)
+           
                 return {
                     ...state, 
-                    totalSum : totalSumFromSrv
+                   // totalSum : totalSumFromSrv
                     }
 
 
@@ -82,7 +84,7 @@ const LogginReducer = (state = initialState, action) => {
             }
 
         case "LOAD_USERS_FROM_COMPANY" : 
-            console.log("!!!! action::", action );
+          
             const usersFromComp = action.usersFromCompany.map(elem => console.log(elem.id))
             return {
                 ...state, 
@@ -96,6 +98,43 @@ const LogginReducer = (state = initialState, action) => {
                 companies: [...state.companies, ...action.companies]
             }
 
+           case "ADD_TO_BASKET" :
+            const productInBasket = {
+                product: action.product, 
+                price: parseInt(action.price), 
+                id: parseInt(Math.random() * 10), 
+                increseNo: parseInt(action.productNo)
+            }
+
+            return {
+                ...state, 
+                basket: [...state.basket, productInBasket ]
+            }
+
+            case "REMOVE_ONE_PRODUCT" : 
+            const productRemoved = state.basket.filter(elem => elem.product !== action.product)  
+            return {
+                ...state, 
+                basket : productRemoved
+            }
+
+            case "ADD_ONE_PRODUCT" : 
+            const increseObj = state.basket.filter(elem => {
+                if (elem.product === action.product) {
+                 
+                    return {
+                        increseNo: elem.increseNo + 1
+                    }
+            }
+        })
+            console.log("increseNo::: ", increseObj );
+            return {
+                ...state, 
+               basket: [...state.basket]  
+            }
+
+          
+            
  
 
         default:  return state
