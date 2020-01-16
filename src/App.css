@@ -67,6 +67,7 @@
 .loggin-container {
   float: left; 
   width: 60%; 
+  position: relative; 
 }
 
 .number {
@@ -82,4 +83,48 @@
 .login-area{
   border: 2px dotted lightgrey; 
   background-color: lightsteelblue;
+}
+
+.loggedIn-wallet-value {
+  background-color: pink;
+  position: absolute; 
+  top:30px; 
+  right:0 ; 
+ }
+ 
+.basket {
+  clear: both;
+  float: left;
+  width:100%; 
+  min-height:30px; 
+  background-color: grey; 
+}
+
+.products {
+  clear: both;
+  float: left;
+  width:100%; 
+  min-height:30px; 
+  background-color: lightgrey; 
+}
+
+.product {
+  display: inline-block;
+  width: calc(100% / 5 - 30px);
+  margin:5px;
+  padding: 5px; 
+  background-color: #f4f4f4;
+}
+.containerProduct{
+  border-bottom: 1px solid white; 
+  padding: 10px;
+  margin: 10px; 
+}
+.containerRight{
+  float: right; 
+  width: 30%; 
+  border-left: 1px solid lightgrey; 
+  border-right: 1px solid lightgrey;
+  padding: 0 10px;
+  margin: 0 10px; 
 }

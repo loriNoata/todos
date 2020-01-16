@@ -58,10 +58,10 @@ class LoggInArticle extends Component {
         return(
             <div>
 
-                 <button onClick={this.props.onOpenVirtualWallet}> Load your virtual wallet</button>
+                <button onClick={this.props.onOpenVirtualWallet}> Load your virtual wallet</button>
                 <button onClick={() => this.props.onLoadArticlePerClick(this.props.articleNo)}> load new article </button>  
                 <button onClick={this.props.onLoadAllArticles}> load all article </button> 
-                 Wallet value: {this.props.totalSum}
+                    <div className="loggedIn-wallet-value"><div>Wallet value: </div> {this.props.totalSum} </div>
 
                 {/* better way of doing it?  */}
                 {this.displayArticle(this.props.articleData)}
@@ -139,5 +139,13 @@ const mapDispatchToProps = dispatch => {
       
     }
 }
+
+// export function mapDispatchToProps(dispatch) {
+//     return {
+//         action: bindActionCreator(consolidateAction, dispatch)
+//     }
+// }
+
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoggInArticle)

@@ -50,7 +50,7 @@ const addTodoReducer = (state = initialState, action) => {
             }
         }
         case "REMOVE_TODO" : 
-            const updatedList = state.toDoList.filter( elem =>  (elem.id !== action.toDo.id)); 
+            const updatedList = state.toDoList.filter(elem =>  (elem.id !== action.toDo.id)); 
             return {
                 ...state, 
                 toDoList: updatedList

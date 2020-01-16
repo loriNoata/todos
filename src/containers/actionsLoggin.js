@@ -85,3 +85,30 @@ export const addNewCompany = (company, description) => {
         description
     }
 }
+
+export const addToBasket = (product, price, productNo) => {
+    return {
+        type: 'ADD_TO_BASKET', 
+        product, 
+        price, 
+        productNo
+    }
+}
+export const removeOneProduct = (product, price, productNo) => {
+    return {
+        type: 'REMOVE_ONE_PRODUCT', 
+        product, 
+        price, 
+        productNo
+    }
+}
+
+export const addOneProduct = (product, price, productNo) => {
+    return {
+        type: 'ADD_ONE_PRODUCT', 
+        product, 
+        price, 
+        productNo
+    }
+}
+ 
