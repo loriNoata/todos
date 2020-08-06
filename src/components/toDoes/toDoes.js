@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'; 
-import {removeTodo, toggleActive} from './../containers/actions';  
-import {filterSelector} from './../containers/reducers/selectors'; 
+import {removeTodo, toggleActive} from '../../containers/actions';  
+import {filterSelector} from '../../containers/reducers/selectors'; 
 
 
 class ToDoes extends Component {
