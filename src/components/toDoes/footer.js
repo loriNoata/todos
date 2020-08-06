@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'; 
-import {filtering} from './../containers/actions'; 
+import {filtering} from '../../containers/actions'; 
  
 class Footer extends Component {
 	constructor(props) {

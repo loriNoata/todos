@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {addTodo} from './../containers/actions';  
+import {addTodo} from '../../containers/actions' 
 import {connect} from 'react-redux'; 
 
   

@@ -86,20 +86,35 @@ export const addNewCompany = (company, description) => {
     }
 }
 
-export const addToBasket = (product, price, productNo) => {
+
+export const addToBasket = (product, price, productNo, id) => {
+    return (dispatch, getState) => {
+        const myProductsFromBasket =  getState().LogginReducer.basket;
+        
+        if (myProductsFromBasket.length > 0) {
+            const existingProduct = myProductsFromBasket.find(elm => elm.id === id)
+
+            if (existingProduct) {
+                return dispatch(addOneProduct(product, price, productNo))
+            }   else {
+                return dispatch(addProductToBasket(product, price, productNo, id))
+            } 
+ 
+        } else {
+           return dispatch(addProductToBasket(product, price, productNo, id));
+        }
+        
+    };
+  };
+
+
+export const addProductToBasket = (product, price, productNo, id) => {
     return {
-        type: 'ADD_TO_BASKET', 
+        type: 'ADD_PRODUCT_TO_BASKET', 
         product, 
         price, 
-        productNo
-    }
-}
-export const removeOneProduct = (product, price, productNo) => {
-    return {
-        type: 'REMOVE_ONE_PRODUCT', 
-        product, 
-        price, 
-        productNo
+        productNo,
+        id
     }
 }
 
@@ -111,4 +126,47 @@ export const addOneProduct = (product, price, productNo) => {
         productNo
     }
 }
+
+
+
+
+export const removeProductFromBasket = (product, price, productNo, id) => { //removeProductFromBasket
+    return (dispatch, getState) => {
+        const myProductsFromBasket =  getState().LogginReducer.basket;
+ 
+        if (myProductsFromBasket.length >= 1) {
+            const productToBeRemove = myProductsFromBasket.find(elm => elm.id === id)
+            console.log("productToBeRemove ++++", productToBeRemove)
+            if (productToBeRemove.productNo < 2 ) {
+                dispatch(removeTheProduct(product, price, productNo, id))
+            } else {
+                dispatch(removeOneProduct(product, price, productNo, id)); 
+            }
+           
+    };
+  } 
+}
+
+
+export const removeOneProduct = (product, price, productNo, id) => {
+    return {
+        type: 'REMOVE_ONE_PRODUCT', 
+        product, 
+        price, 
+        productNo, 
+        id
+    }
+}
+
+export const removeTheProduct = (product, price, productNo, id) => {
+    return {
+        type: 'REMOVE_THE_PRODUCT', 
+        product, 
+        price, 
+        productNo, 
+        id
+    }
+}
+
+
  
