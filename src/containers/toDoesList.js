@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'; 
 
-import HeaderToDo from '../components/header';
-import Footer from '../components/footer';
-import ToDoes from '../components/toDoes';
+import HeaderToDo from '../components/toDoes/header';
+import Footer from '../components/toDoes/footer';
+import ToDoes from '../components/toDoes/toDoes';
 
 
   
